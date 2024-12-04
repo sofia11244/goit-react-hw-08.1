@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './component.module.css';
+import styles from './componentContacts.module.css';
 
 export default function ContactListItem ({ id, name, number, onDelete}) {
     return (

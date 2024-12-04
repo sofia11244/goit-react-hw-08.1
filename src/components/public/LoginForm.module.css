@@ -1,0 +1,32 @@
+.form{
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px;
+}
+.formAlt{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.formAltInput{
+    width: 250px;
+    height: 20px;
+}
+.formButton{
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    margin: 0 auto;
+    height: 30px;
+    align-items: center;
+
+}

@@ -1,35 +1,37 @@
+// import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import '../App.css';
-import ContactForm from './ContactForm.jsx';
-import SearchBox from './SearchBox.jsx';
-import ContactList from './ContactList.jsx';
-import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from '../redux/contactsOps.js';
-import { changeFilter } from '../redux/filtersSlice';
+import ContactPage from '../pages/Contacts.jsx';
+import LoginPage from '../pages/Login';
+import RegistrationPage from '../pages/Registration';
 
+// import Login from '../pages/Login.jsx';
+// import PrivateRoute from '../private/PrivateRoute';
 function App() {
-  const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts.items);
-  const searchValue = useSelector((state) => state.filters.nameFilter);
-
-  const handleAddContact = (newContact) => {
-    dispatch(addContact(newContact));
-  };
-
-  const handleSearchChange = (e) => {
-    dispatch(changeFilter(e.target.value));
-  };
-
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(searchValue.toLowerCase())
-  );
+  
 
   return (
+
+
     <div>
       <h1>Phonebook</h1>
-      <ContactForm onAddContact={handleAddContact} />
-      <SearchBox inputValue={searchValue} handleChange={handleSearchChange} />
-      <ContactList contacts={filteredContacts} />
+      <LoginPage  />
+      <RegistrationPage/>
+      <ContactPage  />
+
     </div>
+    // <Router>
+    //   <div>
+    //     <h1>Phonebook</h1>
+    //     <Routes>
+    //       <PrivateRoute
+    //         path="/contacts"
+    //         element={<ContactPage />}  // Protected route
+    //       />
+    //       <Route path="/login" element={<LoginPage />} />  // Login page
+    //     </Routes>
+    //   </div>
+    // </Router>
+    
   );
 }
 
