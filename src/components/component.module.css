@@ -1,0 +1,96 @@
+
+body{
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.form{
+    max-width:300px;
+    border-radius: 5px;
+border-width: 1.5px;
+border-color:black;
+border-style: solid;
+display: flex;
+flex-direction: column;
+padding: 20px;
+margin: 20px;
+}
+
+.inputText,
+.inputNumber{
+ display: flex;
+ flex-direction: column;
+ text-align: left;
+ align-items: flex-start;
+ padding: 10px;
+}
+
+.submit{
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    margin: 0 auto;
+    height: 30px;
+    align-items: center;
+
+}
+
+.inputError{
+    font-weight: bold;
+}
+
+.name{
+    width: 250px;
+    height: 20px;
+}
+
+.searchBox{
+    margin: 20px;
+}
+.valueText{
+   
+    width: 320px;
+    height: 20px;
+}
+.list{
+    display: flex;
+    padding: 0;
+    flex-wrap: wrap;
+
+}
+
+.listItem{
+    list-style: none;
+    border-radius: 5px;
+    border-width: 1.5px;
+    border-color:black;
+    border-style: solid;
+    margin: 20px;
+    padding:10px;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+}
+
+.listItemAlt{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+.listItemAlt p{
+    margin: 0;
+}
+
+.listItemButton{
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+
+/* 
+border-radius: 5px;
+border-width: 1.5px;
+border-color:black;
+border-style: solid; */
