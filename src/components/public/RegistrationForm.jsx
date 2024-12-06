@@ -128,8 +128,8 @@ const RegistrationForm = () => {
 
       {/* Kayıt başarılı olduktan sonra gösterilecek buton */}
       {isRegistered && (
-        <div>
-          <text>Registration successful!</text>
+        <div className={style.formButton}>
+          <p>Registration successful!</p>
           <button onClick={() => navigate('../../contacts')} className={style.formButtonItem}>
             Go to Contacts
           </button>
