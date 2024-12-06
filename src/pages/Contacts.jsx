@@ -5,6 +5,7 @@ import ContactList from '../components/contact-components/ContactList.jsx';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from '../redux/contact/contactsOps.js';
 import { changeFilter } from '../redux/contact/filtersSlice.js';
+import style from '../components/contact-components/componentContacts.module.css';
 
 function Contacts() {
   const dispatch = useDispatch();
@@ -24,10 +25,13 @@ function Contacts() {
   );
 
   return (
-    <div>
+    <div className={style.container}>
+
+
       <ContactForm onAddContact={handleAddContact} />
       <SearchBox inputValue={searchValue} handleChange={handleSearchChange} />
       <ContactList contacts={filteredContacts} />
+
     </div>
   );
 }

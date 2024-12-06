@@ -63,17 +63,20 @@ const ContactForm = () => {
       validationSchema={FeedbackSchema}
     >
       {({ setFieldValue }) => (
-        <Form className={styles.form}>
+        <div>
+          <Form className={styles.form}>
+          <div className={styles.form}> 
           <div className={styles.inputText}>
-            <label htmlFor="name">Name</label>
-            <Field className={styles.name} type="text" name="name" id="name" />
+            <label className={styles.formAltLabel} htmlFor="name">Name</label>
+            <Field className={styles.formAltInput} type="text" name="name" id="name" />
             <ErrorMessage className={styles.inputError} name="name" component="span" />
+          </div>
           </div>
 
           <div className={styles.inputNumber}>
-            <label htmlFor="number">Number</label>
+            <label className={styles.formAltLabel} htmlFor="number">Number</label>
             <Field
-              className={styles.name}
+              className={styles.formAltInput}
               type="text"
               name="number"
               id="number"
@@ -81,9 +84,11 @@ const ContactForm = () => {
             />
             <ErrorMessage className={styles.inputError} name="number" component="span" />
           </div>
-
-          <button className={styles.submit} type="submit">Add Contact</button>
+          <div className={styles.formButton}>
+          <button className={styles.formButtonAlt} type="submit">Add Contact</button>
+          </div>
         </Form>
+        </div>
       )}
     </Formik>
   );

@@ -12,7 +12,6 @@
     color: white;
 }
 .form{
-    
     border-radius: 5px;
     padding: 20px;
     margin: 20px;
@@ -20,7 +19,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 300px;
 }
 .formAlt{
     display: flex;

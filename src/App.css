@@ -3,11 +3,13 @@ body{
     background-size: cover;
     background-attachment: fixed;
     height: 600px;
+  font-family: Arial, sans-serif;
+
 }
 .App {
     display: flex;
     align-items:center;
     justify-content: center;
-    height: 600px;
+    /* height: 600px; */
 
 }

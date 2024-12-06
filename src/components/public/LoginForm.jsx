@@ -1,17 +1,31 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { setToken } from '../../redux/actions/tokenActions';
+import { persistToken } from '../../redux/redux-persist';
 import { setEmail, setPassword, clearForm } from '../../redux/auth/authSlice';
 import style from './LoginForm.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const email = useSelector((state) => state.auth.email);
   const password = useSelector((state) => state.auth.password);
-
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Formu gönderme işlemleri
-    console.log('Email:', email);
-    console.log('Password:', password);
+    
+    // Örnek doğrulama işlemi (e-posta ve şifre kontrolü)
+    if (email === 'test@example.com' && password === 'password123') {
+      // Token oluşturma
+      const token = 'example-token'; // Gerçek API'de token buradan alınır
+      dispatch(setToken(token));
+      await persistToken(token);
+      console.log('token', token);
+      // Başarılı giriş sonrası yönlendirme
+      navigate('/');
+    } else {
+      console.error('Invalid login credentials');
+    }
+
     // Formu temizleme
     dispatch(clearForm());
   };
