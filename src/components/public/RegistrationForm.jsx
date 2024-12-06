@@ -1,8 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setName, setEmail, setPassword, setConfirmPassword, setError, clearForm } from '../../redux/auth/authSlice';
 import style from '../public/RegistrationForm.module.css';
+import { setToken } from '../../redux/actions/tokenActions';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
+import { persistToken, getTokenFromStorage } from '../../redux/redux-persist';
+
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { name, email, password, confirmPassword, error } = useSelector((state) => state.auth);
 
   // Form verilerini güncelleme fonksiyonu
@@ -15,18 +21,46 @@ const RegistrationForm = () => {
   };
 
   // Form gönderildiğinde çalışacak fonksiyon
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Token kaydetme
+    const registrationToken = uuidv4();
+    persistToken(registrationToken);
+  
+    // Token'i bekleyerek al
+    try {
+      const storedToken = await getTokenFromStorage();
+      if (storedToken === registrationToken) {
+        navigate('/public');
+      } else {
+        console.error('Token not valid');
+      }
+    } catch (error) {
+      console.error('Could not get the token:', error);
+    }
+  
+    // Token'i bekleyerek al
+  
+
+    const storedToken = getTokenFromStorage();
+    if (storedToken === registrationToken) {
+      // Token doğrulandı, public sayfasına erişim izni ver
+      navigate('/public');
+    } else {
+      // Token doğrulanamadı, hata mesajı göster
+      console.error('Token not valid');
+    }
 
     // Şifre doğrulama kontrolü
     if (password !== confirmPassword) {
-      dispatch(setError('Şifreler uyuşmuyor!'));
+      dispatch(setError('Passwords do not match!'));
       return;
     }
 
     // Basit form verisi kontrolü (e-posta formatı vs. gibi)
     if (!name || !email || !password) {
-      dispatch(setError('Lütfen tüm alanları doldurun!'));
+      dispatch(setError('Please fill the form!'));
       return;
     }
 
@@ -34,10 +68,14 @@ const RegistrationForm = () => {
     dispatch(setError(''));
 
     // Burada API isteği veya başka işlemler yapılabilir
-    console.log('Kullanıcı verileri gönderildi:', { name, email, password });
+    console.log('User registered:', { name, email, password });
 
     // Formu sıfırlama
     dispatch(clearForm());
+
+    // Token oluşturma
+    const token = uuidv4();
+    dispatch(setToken(token));
   };
 
   return (
@@ -99,3 +137,4 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
+

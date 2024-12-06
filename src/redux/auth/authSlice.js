@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import tokenReducer from '../reducers/tokenReducer';
 
 const initialState = {
   email: '',
@@ -11,6 +12,10 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    token: tokenReducer,
+    setName: (state, action) => {
+      state.name = action.payload;
+    },
     setEmail: (state, action) => {
       state.email = action.payload;
     },
