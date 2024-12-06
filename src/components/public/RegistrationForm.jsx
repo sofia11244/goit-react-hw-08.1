@@ -79,7 +79,9 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div>
+    <div className={style.container}>
+        <h1 className={style.title}>Register</h1>
+
       <form onSubmit={handleSubmit} className={style.form}>
         <div className={style.formAlt}>
           <label className={style.formAltLabel} htmlFor="name">Name</label>
@@ -129,8 +131,10 @@ const RegistrationForm = () => {
             className={style.formAltInput}
           />
         </div>
+        <div className={style.formButton} >
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button className={style.formButton} type="submit">Register</button>
+        <button className={style.formButtonItem} type="submit">Register</button>
+        </div>
       </form>
     </div>
   );

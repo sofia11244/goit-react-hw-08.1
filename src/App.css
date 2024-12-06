@@ -1,0 +1,13 @@
+body{
+    background-image:url('../src/img/contact-background-img.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    height: 600px;
+}
+.App {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    height: 600px;
+
+}

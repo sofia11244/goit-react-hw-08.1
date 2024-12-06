@@ -17,9 +17,14 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={style.form}>
+    
+    <div className={style.container}>
+        <h1 className={style.title}>Login</h1>
+
+      <form onSubmit={handleSubmit} className={style.form}>
+
       <div className={style.formAlt}>
-        <label>Email</label>
+        <label className={style.formAltLabel}>Email</label>
         <input
           type="email"
           value={email}
@@ -28,7 +33,7 @@ const LoginForm = () => {
         />
       </div>
       <div className={style.formAlt}>
-        <label>Password</label>
+        <label className={style.formAltLabel}>Password</label>
         <input
           type="password"
           value={password}
@@ -36,8 +41,11 @@ const LoginForm = () => {
           className={style.formAltInput}
         />
       </div>
-      <button className={style.formButton} type="submit">Login</button>
+      <div className={style.formButton}>
+      <button className={style.formButtonItem} type="submit">Login</button>
+      </div>
     </form>
+    </div>
   );
 };
 

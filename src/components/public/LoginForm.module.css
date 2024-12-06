@@ -1,5 +1,18 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.103); /* Yarı saydam beyaz renk */
+    backdrop-filter: blur(8px); /* Arka planı bulanıklaştırır */
+    -webkit-backdrop-filter: blur(100px); /* Safari desteği */
+    padding: 20px;
+    border-radius: 30px; /* Köşeleri yuvarlama */
+}
+.title{
+    text-align: center;
+    color: white;
+}
 .form{
-    border: solid black 1px;
+    
     border-radius: 5px;
     padding: 20px;
     margin: 20px;
@@ -14,19 +27,53 @@
     flex-direction: column;
     text-align: left;
     align-items: flex-start;
-    padding: 10px;
+    padding: 20px;
 }
-
+.formAltLabel{
+    color: white;
+    font-weight: bold;
+}
 .formAltInput{
     width: 250px;
     height: 20px;
+    border: none;
+    border-bottom: solid white 3px;
+    outline: none; 
+  background: transparent; 
+  color: white; 
+  padding: 5px 0; 
+  font-size: 16px; 
+  transition: border-color 0.3s ease;
 }
+
+.formAltInput:hover,
+.formAltInput:focus {
+    background-color: rgba(150, 150, 150, 0.144); 
+
+    border-radius: 5px;
+
+}
+
 .formButton{
+    padding-top: 30px;
+    
+}
+.formButtonItem{
     display: flex;
     justify-content: center;
-    width: 100px;
     margin: 0 auto;
-    height: 30px;
     align-items: center;
+    width: 200px;
+    height: 40px;
+    border-radius: 35px;
+    border: none;
+    cursor: pointer;
+    font: 100;
+    font-weight: bold;
+}
+
+.formButtonItem:hover{
+    background-color: rgb(150, 150, 150); /* Yarı saydam beyaz renk */
+    color: rgba(255, 255, 255, 0.847);
 
 }

@@ -15,7 +15,7 @@ function App() {
   const token = useSelector((state) => state.auth.token) || null;
 
   return (
-    <div>
+    <div className="App">
       <Routes>
         {/* Koşullu olarak özel veya genel ana sayfa */}
         <Route path="/" element={token ? <PrivateHome /> : <PublicHome />} />
