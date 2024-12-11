@@ -7,26 +7,27 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const email = useSelector((state) => state.auth.email);
   const password = useSelector((state) => state.auth.password);
-  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Örnek doğrulama işlemi (e-posta ve şifre kontrolü)
+
+    // Token doğrulama simülasyonu (Kendi backend API'nizle değiştirin)
+    const mockToken = 'mock-auth-token'; // Burada API'den dönen token olmalı
     if (email === 'test@example.com' && password === 'password123') {
-      // Token oluşturma
-      const token = 'example-token'; // Gerçek API'de token buradan alınır
-      dispatch(setToken(token));
-      await persistToken(token);
-      console.log('token', token);
-      // Başarılı giriş sonrası yönlendirme
-      navigate('/');
+      
+      // Giriş başarılı, token'ı kaydet
+      dispatch(setToken(mockToken));
+      await persistToken(mockToken); 
+      navigate('/'); 
     } else {
-      console.error('Invalid login credentials');
+      alert('Invalid email or password');
     }
 
-    // Formu temizleme
+    // Formu temizle
     dispatch(clearForm());
   };
 

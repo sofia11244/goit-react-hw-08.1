@@ -21,7 +21,7 @@ function App() {
 
 
         <Route path="/" element={token ? <PrivateHome /> : <PublicHome/>} />
-        <Route path="/public" element={<PublicHome />} />
+        <Route path="/private" element={<PrivateHome />} />
         <Route path="/contacts" element={<Contact/>} />
 
 

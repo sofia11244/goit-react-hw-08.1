@@ -30,6 +30,7 @@ const RegistrationForm = () => {
     // Token kaydetme
     const registrationToken = uuidv4();
     persistToken(registrationToken);
+    console.log('Token stored:', await getTokenFromStorage());
 
     // Şifre doğrulama kontrolü
     if (password !== confirmPassword) {
@@ -59,7 +60,7 @@ const RegistrationForm = () => {
     // Kullanıcıyı yönlendirme işlemi
     const storedToken = await getTokenFromStorage();
     if (storedToken === registrationToken) {
-      navigate('/public');
+      navigate('/private');
     } else {
       console.error('Token not valid');
     }

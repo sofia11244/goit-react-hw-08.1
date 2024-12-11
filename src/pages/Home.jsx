@@ -7,10 +7,7 @@ function PrivateHome() {
 
   return (
     <div style={{border:"solid black 1px"}}>
-      <h1>Private</h1>
       <ContactPage  />
-      
-
     </div>
   );
 }
