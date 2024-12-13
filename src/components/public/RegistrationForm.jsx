@@ -60,7 +60,7 @@ const RegistrationForm = () => {
     // Kullanıcıyı yönlendirme işlemi
     const storedToken = await getTokenFromStorage();
     if (storedToken === registrationToken) {
-      navigate('/private');
+      navigate('/login');
     } else {
       console.error('Token not valid');
     }

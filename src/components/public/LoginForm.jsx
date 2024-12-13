@@ -35,16 +35,25 @@ const LoginForm = () => {
 
   const emailError = useEmailValidation(email);
   const passwordError = usePasswordValidation(password);
-  const isFormValid = !emailError && !passwordError;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (isFormValid) {
-      const mockToken = 'mock-auth-token'; // Burada API'den dönen token olmalı
+    if (!email) {
+      alert('Email must not be empty');
+      return;
+    }
+
+    if (!password) {
+      alert('Password must not be empty');
+      return;
+    }
+
+    if (!emailError && !passwordError) {
+      const mockToken = 'mock-auth-token'; // Burada API'den dönen token olmalı ancak hala daha invalid hatası alıyorum?
       dispatch(setToken(mockToken));
       await persistToken(mockToken);
-      navigate('/'); 
+      navigate('/contacts');
     } else {
       alert('Invalid email or password');
     }
@@ -78,7 +87,7 @@ const LoginForm = () => {
           {passwordError && <span className={style.error}>{passwordError}</span>}
         </div>
         <div className={style.formButton}>
-          <button type="submit" disabled={!isFormValid} className={style.formButtonItem}>Login</button>
+          <button type="submit" className={style.formButtonItem}>Login</button>
         </div>
       </form>
     </div>
