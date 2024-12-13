@@ -4,7 +4,7 @@ import style from '../public/RegistrationForm.module.css';
 import { setToken } from '../../redux/actions/tokenActions';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-import { persistToken, getTokenFromStorage } from '../../redux/redux-persist';
+import { persistToken, getTokenFromStorage } from '../../redux/redux-persist'; // Ensure these functions are correct
 import { useState } from 'react';
 
 const RegistrationForm = () => {
@@ -12,9 +12,9 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
   const { name, email, password, confirmPassword, error } = useSelector((state) => state.auth);
 
-  const [isRegistered, setIsRegistered] = useState(false); // Yeni state: kayıt olup olmadığını kontrol etme
+  const [isRegistered, setIsRegistered] = useState(false); // Track if the user is registered
 
-  // Form verilerini güncelleme fonksiyonu
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'name') dispatch(setName(value));
@@ -23,51 +23,58 @@ const RegistrationForm = () => {
     if (name === 'confirmPassword') dispatch(setConfirmPassword(value));
   };
 
-  // Form gönderildiğinde çalışacak fonksiyon
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Token kaydetme
     const registrationToken = uuidv4();
-    persistToken(registrationToken);
-    console.log('Token stored:', await getTokenFromStorage());
+    persistToken(registrationToken); 
 
-    // Şifre doğrulama kontrolü
+    setTimeout(async () => {
+      console.log('Token stored:', localStorage.getItem('token'));  // Token'ı kontrol et
+      const storedToken = await getTokenFromStorage();
+      if (storedToken === registrationToken) {
+        navigate('/login'); // Redirect to login
+      } else {
+        console.error('Token not valid');
+      }
+      console.log('Retrieved token:', storedToken);
+
+    console.log('Token stored:', await getTokenFromStorage()); 
+    console.log('Stored token in localStorage:', localStorage.getItem('token')); 
+
+    // Password validation
     if (password !== confirmPassword) {
       dispatch(setError('Passwords do not match!'));
       return;
     }
 
-    // Basit form verisi kontrolü (e-posta formatı vs. gibi)
+    // Basic form validation
     if (!name || !email || !password) {
       dispatch(setError('Please fill the form!'));
       return;
     }
 
-    // Hata temizleme
+    // Clear any previous errors
     dispatch(setError(''));
 
-    // Token oluşturma ve kaydetme
+    // Save token to Redux store
     const token = uuidv4();
     dispatch(setToken(token));
 
-    // Kayıt başarılı ise, buton ekle ve isRegistered state'ini true yap
+    // Mark as registered
     setIsRegistered(true);
 
-    // Formu sıfırlama
+    // Reset the form state in Redux
     dispatch(clearForm());
 
-    // Kullanıcıyı yönlendirme işlemi
-    const storedToken = await getTokenFromStorage();
-    if (storedToken === registrationToken) {
-      navigate('/login');
-    } else {
-      console.error('Token not valid');
-    }
 
+    
+
+    // Debugging user registration
     console.log('User registered:', { name, email, password });
-  };
-
+ }, 1000); // Asenkron işlem için kısa bir bekleme süresi ekleyin
+};
   return (
     <div className={style.container}>
       <h1 className={style.title}>Register</h1>
@@ -127,7 +134,7 @@ const RegistrationForm = () => {
         </div>
       </form>
 
-      {/* Kayıt başarılı olduktan sonra gösterilecek buton */}
+      {/* Show after successful registration */}
       {isRegistered && (
         <div className={style.formButton}>
           <p>Registration successful!</p>
